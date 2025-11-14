@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: mineral_db
+      POSTGRES_USER: mineral_user
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ../mineral-shop-backend
+      dockerfile: ../docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ../mineral-shop-backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      DB_NAME: mineral_db
+      DB_USER: mineral_user
+      DB_PASSWORD: secret
+      DB_HOST: db
+    depends_on:
+      - db
