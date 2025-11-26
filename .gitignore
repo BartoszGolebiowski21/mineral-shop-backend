@@ -29,3 +29,4 @@ db.sqlite3
 *.pid
 
 postgres_data
+media
