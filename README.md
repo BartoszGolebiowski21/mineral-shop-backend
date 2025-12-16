@@ -1,6 +1,6 @@
 # 🚧 WORK IN PROGRESS 🚧
 
-![Project image](./image.png)
+![Project image](./demo-image.png)
 
 ## About this project
 
