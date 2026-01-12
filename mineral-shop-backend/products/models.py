@@ -30,7 +30,7 @@ class Size(models.Model):
 
 class Product(models.Model):
     slug = models.SlugField(unique=True)
-    product_code = models.CharField(max_length=64, unique=True, null=True, blank=True)
+    code = models.CharField(max_length=64, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(
