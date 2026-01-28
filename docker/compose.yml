@@ -4,10 +4,8 @@ services:
   db:
     image: postgres:15
     restart: always
-    environment:
-      POSTGRES_DB: mineral_db
-      POSTGRES_USER: mineral_user
-      POSTGRES_PASSWORD: secret
+    env_file:
+      - ../.env 
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     ports:
@@ -22,10 +20,7 @@ services:
       - ../mineral-shop-backend:/app
     ports:
       - "8000:8000"
-    environment:
-      DB_NAME: mineral_db
-      DB_USER: mineral_user
-      DB_PASSWORD: secret
-      DB_HOST: db
+    env_file:
+      - ../.env 
     depends_on:
       - db

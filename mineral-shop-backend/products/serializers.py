@@ -37,6 +37,7 @@ class SizeSerializer(serializers.ModelSerializer):
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
+    price = serializers.DecimalField(max_digits=8, decimal_places=2)
     images = ImageSerializer(many=True, read_only=True)
     category = CategorySerializer(read_only=True)
     stones = StoneSerializer(many=True, read_only=True)
