@@ -1,6 +1,8 @@
 services:
   backend:
     command: gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./media:/app/media
 
   nginx:
     image: nginx:alpine
