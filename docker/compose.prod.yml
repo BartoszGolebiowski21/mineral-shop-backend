@@ -7,7 +7,7 @@ services:
       - default
       - proxy-net
 
-  nginx:
+  nginx-backend:
     image: nginx:alpine
     container_name: backend-nginx
     volumes:
