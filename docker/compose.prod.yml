@@ -3,22 +3,21 @@ services:
     command: gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./media:/app/media
+    networks:
+      - default
+      - proxy-net
 
   nginx:
     image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
+    container_name: backend-nginx
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
       - ./media:/media
     depends_on:
       - backend
+    networks:
+      - proxy-net
 
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+networks:
+  proxy-net:
+    external: true
