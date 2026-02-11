@@ -27,7 +27,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class StoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stone
-        fields = ["id", "name"]
+        fields = ["id", "name", "slug"]
 
 
 class SizeSerializer(serializers.ModelSerializer):
