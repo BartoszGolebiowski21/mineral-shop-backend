@@ -1,6 +1,7 @@
 from rest_framework import generics
-from .models import Product, Stone
-from .serializers import ProductListSerializer, ProductDetailSerializer, StoneSerializer
+from .models import Product, Stone, Category
+from .serializers import ProductListSerializer, ProductDetailSerializer, StoneSerializer, \
+    CategorySerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ProductFilter
 
@@ -27,3 +28,8 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 class StoneListAPIView(generics.ListAPIView):
     queryset = Stone.objects.all().order_by('name')
     serializer_class = StoneSerializer
+
+
+class CategoryListAPIView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
