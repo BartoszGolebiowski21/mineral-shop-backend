@@ -1,6 +1,6 @@
 # 🚧 WORK IN PROGRESS 🚧
 
-## [kamykowe-rekodzielo.pl](https://kamykowe-rekodzielo.pl/products/rings)
+## [kamykowe-rekodzielo.pl](https://kamykowe-rekodzielo.pl/products)
 
 
 ![Project image](./demo-image.png)
