@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - proxy-net
+
+  backend:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
+    command:
+      bash -c "sleep 10 && python manage.py migrate &&
+              gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
+    volumes:
+      - ./media:/app/media
+    networks:
+      - proxy-net
+    expose:
+      - "8000"
+
+networks:
+  proxy-net:
+    external: true
