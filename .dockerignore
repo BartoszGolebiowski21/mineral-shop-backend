@@ -1,0 +1,4 @@
+postgres_data
+.git
+.gitignore
+.venv/
