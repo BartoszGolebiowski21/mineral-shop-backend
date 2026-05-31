@@ -11,7 +11,7 @@ services:
 
   backend:
     build: .
-    user: "root" # Startuje jako root tylko po to, by wykonać chown na zamontowanym wolumenie VPS-a
+    user: "root"
     restart: always
     env_file:
       - .env
