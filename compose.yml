@@ -11,7 +11,7 @@ services:
 
   backend:
     build: .
-    user: "root"
+    user: "root" # Startuje jako root tylko po to, by wykonać chown na zamontowanym wolumenie VPS-a
     restart: always
     env_file:
       - .env
@@ -21,7 +21,7 @@ services:
       bash -c "chown -R appuser:appuser /app/media && 
       sleep 10 && 
       python manage.py migrate && 
-      su -s /bin/bash appuser -c 'gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120'"
+      exec su -s /bin/bash appuser -c 'gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120'"
     volumes:
       - ./media:/app/media
     networks:
