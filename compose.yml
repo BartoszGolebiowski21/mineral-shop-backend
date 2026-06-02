@@ -11,17 +11,15 @@ services:
 
   backend:
     build: .
-    user: "root"
     restart: always
     env_file:
       - .env
     depends_on:
       - db
     command: >
-      bash -c "chown -R appuser:appuser /app/media && 
-      sleep 10 && 
+      bash -c "sleep 10 && 
       python manage.py migrate && 
-      exec su -s /bin/bash appuser -c 'gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120'"
+      gunicorn shop_backend.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
     volumes:
       - ./media:/app/media
     networks:
