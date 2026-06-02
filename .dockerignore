@@ -1,4 +1,6 @@
-postgres_data
-.git
+postgres_data/
+media/
+.git/
 .gitignore
 .venv/
+.env
