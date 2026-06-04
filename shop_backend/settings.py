@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 
 # Media files
 
-MEDIA_URL = "/media/"
+MEDIA_URL = os.environ.get("DJANGO_MEDIA_URL", "/media/")
 
 MEDIA_ROOT = BASE_DIR / "media"
 
